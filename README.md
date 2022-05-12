@@ -1,3 +1,12 @@
+# Sorting Visualizer
+
+In this section, I've included a remote link for running the application along-side a demonstration video that shows how to operate with the user interface.
+
+
+https://user-images.githubusercontent.com/46636441/168159775-ca2f6b47-e951-4517-ac85-773a5150515f.mp4
+
+Remote Link: https://guyr18.github.io/sorting-visualizer/
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
