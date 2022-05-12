@@ -61,6 +61,7 @@ function bubblesort(A)
     }
 
     S.push({markStep: true, index: 0});
+    console.log(S);
     return [A, S];
 
 }
@@ -102,10 +103,11 @@ function selectionsort(A)
     }
 
     S.push({markStep: true, index: n - 1});
+    console.log(S);
     return [A, S];
 }
 
-// SelectionSort(A) performs the selection sort algorithm on an array A.
+// InsertionSort(A) performs the selection sort algorithm on an array A.
 // It returns a two-element array containing [A', S] where A'
 // is the sorted array and S is a list of re-traceable steps
 // that are used to visualize the array sorting process.

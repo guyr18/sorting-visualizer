@@ -63,10 +63,10 @@ class TopPanel extends React.Component
         return (
 
             <div style={panelContainer}>
-                <ul style={{position: 'relative', display: 'flex', cursor: 'pointer', listStyle: 'none', marginTop: '25px', alignItems: 'center', justifyContent: 'center'}}>
-                    <li style={{paddingLeft: '85px'}}><AlgorithmItem key="Insertion Sort" unselectAllCallback={this.unselectAll} ref={this.itemRefs[0]} style={{paddingLeft: '5px'}} label="Insertion Sort" /></li>
-                    <li style={{paddingLeft: '85px'}}><AlgorithmItem key="Selection Sort" unselectAllCallback={this.unselectAll} ref={this.itemRefs[1]} style={{paddingLeft: '5px'}} label="Selection Sort" /></li>
-                    <li style={{paddingLeft: '85px'}}><AlgorithmItem key="Bubble Sort" unselectAllCallback={this.unselectAll} ref={this.itemRefs[2]} style={{paddingLeft: '5px'}} label="Bubble Sort" /></li>
+                <ul style={{width: '95%', position: 'relative', display: 'flex', cursor: 'pointer', listStyle: 'none', marginTop: '25px', alignItems: 'center', justifyContent: 'space-evenly'}}>
+                    <li><AlgorithmItem key="Insertion Sort" unselectAllCallback={this.unselectAll} ref={this.itemRefs[0]} style={{zIndex: 1}} label="Insertion Sort" /></li>
+                    <li><AlgorithmItem key="Selection Sort" unselectAllCallback={this.unselectAll} ref={this.itemRefs[1]} style={{zIndex: 1}} label="Selection Sort" /></li>
+                    <li><AlgorithmItem key="Bubble Sort" unselectAllCallback={this.unselectAll} ref={this.itemRefs[2]} style={{zIndex: 1}} label="Bubble Sort" /></li>
                 </ul>
             </div>
 
@@ -80,29 +80,12 @@ const panelContainer = {
     width: '100%',
     height: '100px',
     borderStyle: 'solid',
+    borderLeftWidth: '0px',
+    borderRightWidth: '0px',
     borderBottomWidth: '1px',
     borderBottomColor: '#eaeaea',
 
 };
 
-const newDataStyle = {
-
-    position: 'absolute',
-    width: '150px',
-    height: '40px',
-    borderColor: "#eaeaea",
-    borderStyle: 'solid',
-    borderWidth: '1px',
-    borderRadius: '32px',
-
-};
-
-const newDataTextStyle = {
-
-    position: 'relative',
-    fontFamily: "Roboto, sans-serif",
-    color: "#FFF",
-
-};
 
 export default TopPanel;

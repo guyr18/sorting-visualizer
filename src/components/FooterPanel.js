@@ -56,6 +56,8 @@ const footerContainerStyle = {
     height: '80px',
     borderTopColor: "#eaeaea",
     borderStyle: 'solid',
+    borderLeftWidth: '0px',
+    borderRightWidth: '0px',
     borderBottomColor: "#1a73e8",
     borderBottomWidth: '8px',
     borderTopWidth: '1px',

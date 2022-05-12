@@ -37,7 +37,7 @@ class BarElement extends React.Component
 
         return (
 
-            <div style={{position: 'relative', width: this.props.width, height: this.props.height, backgroundColor: this.state.bg}}>
+            <div style={{position: 'relative', width: this.state.width, height: this.state.height, backgroundColor: this.state.bg}}>
                 {this.props.itemCount < 30 && <p style={{color: "#FFF", fontWeight: "bold", fontSize: getFontSize}}>{this.state.itemLabel}</p>}
             </div>
         );

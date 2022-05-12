@@ -71,7 +71,7 @@ class CoreVisualizer extends React.Component
         console.log(this.props.sortMethod);
         let originalData = deepCopy(this.curData);
         let [sortedData, steps] = SelectCorrectAlgorithm(this.props.sortMethod, this.curData);
-        let timeout = Math.ceil(7500 / this.curData.length);
+        let timeout = Math.ceil(3000 / this.curData.length);
         console.log(steps);
 
         const run = async () => {
@@ -103,7 +103,7 @@ class CoreVisualizer extends React.Component
                     this.barRefs[originalData[step.right]].current.setState({itemLabel: originalData[step.right].toString(), bg: "#EE5959"});
                     await sleep(timeout);
 
-                    // Swap the elements.
+                    // Swap the elements and BarElement pointers.
                     let temp = originalData[step.left];
                     let tempBar = this.barRefs[originalData[step.left]];
                     this.barRefs[originalData[step.left]] = this.barRefs[originalData[step.right]];
@@ -111,9 +111,9 @@ class CoreVisualizer extends React.Component
                     originalData[step.left] = originalData[step.right];
                     originalData[step.right] = temp;
             
-                    // Update text labels and reset to default color to show that they were swapped.
-                    this.barRefs[originalData[step.left]].current.setState({bg: "#1ab4e8", itemLabel: originalData[step.left].toString()});
-                    this.barRefs[originalData[step.right]].current.setState({bg: "#1ab4e8", itemLabel: originalData[step.right].toString()});
+                    // Update dimensions, text labels and reset to default color to show that they were swapped.
+                    this.barRefs[originalData[step.left]].current.setState({width: this.barRefs[originalData[step.right]].current.state.width, height: this.barRefs[originalData[step.right]].current.state.height, bg: "#1ab4e8", itemLabel: originalData[step.left].toString()});
+                    this.barRefs[originalData[step.right]].current.setState({width: this.barRefs[originalData[step.left]].current.state.width, height: this.barRefs[originalData[step.left]].current.state.height, bg: "#1ab4e8", itemLabel: originalData[step.right].toString()});
 
                 }
                 else
@@ -129,8 +129,8 @@ class CoreVisualizer extends React.Component
                 }
             }
 
-            window.alert("Clearing visualization in 5 seconds..");
-            await sleep(5000);
+            window.alert("Clearing visualization in 3 seconds..");
+            await sleep(3000);
             this.setState({showSimulation: false});
 
         }
@@ -181,15 +181,6 @@ class CoreVisualizer extends React.Component
             const visualizerFrameWidth = window.innerWidth * .6; // CSS sets width as 60%; we need 60% of the screen width to know the visualizer frame width.
             const elemWidth = visualizerFrameWidth / this.curData.length; // Width can vary as a function of the input size.
             let jsxFromCurData = [];
-            let tempRefs = [];
-
-            for(let obj in this.barRefs)
-            {
-
-                tempRefs.push(this.barRefs[obj]);
-
-            }
-
             this.barRefs = {};
 
             // Build BarElement references and JSX elements for simulation view display.
@@ -199,7 +190,7 @@ class CoreVisualizer extends React.Component
 
                 let item = this.curData[i];
                 let elemHeight = item <= 1 ? ((item + 1) * 10) + 10 : item * 10;
-                let jsxBarRef = tempRefs.length > 0  && i < this.curData.length ? tempRefs[i] : React.createRef();                
+                let jsxBarRef = React.createRef();               
                 let jsxFullElem = (<li key={i.toString()} style={{paddingLeft: '10px'}}>
                                     <BarElement ref={jsxBarRef} label={item} itemCount={this.curData.length} width={(elemWidth.toString()) + "px"} height={(elemHeight.toString()) + "px"} />
                                    </li>);
@@ -213,7 +204,7 @@ class CoreVisualizer extends React.Component
 
                 <React.Fragment>
                     <div style={quickCenterStyle}>
-                        <h3 style={{position: 'absolute', top: 0, paddingTop: '105px', fontSize: '32px', fontFamily: 'Roboto, sans-serif', cursor: 'pointer'}}>{this.props.sortMethod}</h3>
+                        <h3 style={{position: 'absolute', top: 100, fontSize: '32px', fontFamily: 'Roboto, sans-serif', cursor: 'pointer'}}>{this.props.sortMethod}</h3>
                         <SimpleButton defaultColor="#1a73e8" hoverColor="#1a62e8" onClick={this.onNewDataClickHandler} style={newDataButtonStyle} textStyle={newDataButtonLabelStyle} label="Get New Data" />
                         <SimpleButton defaultColor={this.state.sortComplete ? "#EE4B2B" : "#1a73e8"} hoverColor={this.state.sortComplete ? "#EE4D2D" : "#1a62e8"} onClick={this.state.sortComplete ? null : this.onSortDataClickHandler} style={sortDataButtonStyle} textStyle={sortDataButtonLabelStyle} label="Sort Data" />
                         <ul style={{display: 'flex', position: 'relative', cursor:'pointer', paddingTop: '150px', listStyle: 'none'}}>
@@ -229,7 +220,7 @@ class CoreVisualizer extends React.Component
         return (
             <React.Fragment>
                 <div style={quickCenterStyle}>
-                    {!this.state.showSimulation && <h3 style={{position: 'absolute', paddingTop: '175px', fontSize: '32px', fontFamily: 'Roboto, sans-serif', cursor: 'pointer'}}>{this.props.sortMethod}</h3>}
+                    {!this.state.showSimulation && <h3 style={{position: 'absolute', top: 130, fontSize: '32px', fontFamily: 'Roboto, sans-serif', cursor: 'pointer'}}>{this.props.sortMethod}</h3>}
                     {!this.state.showSimulation && gatherInfo()}
                     {this.state.showSimulation && simView()}
                 </div>

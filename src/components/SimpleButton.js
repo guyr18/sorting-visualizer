@@ -17,7 +17,6 @@ class SimpleButton extends React.Component
     handleClick(e)
     {
 
-        console.log("yo");
         this.props.onClick(e);
 
     }
